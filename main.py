@@ -34,6 +34,7 @@ while running:
         )
         break
     print("==================================")
+    print(bcolors.OKGREEN + name[i % 2]["name"] + " TURN " + bcolors.ENDC)
     player.choose_action()
     choice = input("Choose an action: ")
     if choice == "1" or choice == "Attack":
@@ -47,26 +48,35 @@ while running:
             cost = magic[int(mag) - 1]["cost"]
             if cost > name[i % 2]["obj"].get_mp():
                 print(bcolors.FAIL + "\n Not Enough MP \n" + bcolors.ENDC)
-                life_choice = input(
-                    bcolors.BOLD
-                    + " DO YOU WANT USE HP FOR MP: RATIO is 4:1 [Y/n] >"
-                    + bcolors.ENDC
-                )
+                life_choice = input(" DO YOU WANT USE HP FOR MP: RATIO is 4:1 [Y/n] >")
                 if life_choice == "Y" or life_choice == "y":
-                    dmg = round(0.25 * cost)
-                    if name[i % 2]["obj"].get_hp() > cost:
-                        name[i % 2]["obj"].take_damage(dmg)
+                    dmgp = round(0.25 * cost)
+                    print(name[i % 2]["obj"].get_hp())
+                    if name[i % 2]["obj"].get_hp() > dmgp:
+                        name[i % 2]["obj"].take_damage(dmgp)
+                        print(
+                            bcolors.FAIL
+                            + bcolors.BOLD
+                            + "BECAUSE "
+                            + name[i % 2]["name"]
+                            +" CHOSE A DEAL OF HP TO MP EXCHANGE "
+                            + bcolors.BOLD
+                            + " HE TOOK DAMAGE OF: "
+                            + str(dmgp)
+                            + " HIS HP IS: "
+                            + str(name[i % 2]["obj"].get_hp())
+                            + bcolors.ENDC
+                        )
                     else:
                         print(bcolors.WARNING + "\n DEATH AVERTED \n " + bcolors.ENDC)
-                dmg = 0
-            name[1 if i % 2 == 0 else 1]["obj"].take_damage(magic[int(mag) - 1]["dmg"])
+                name[1 if i % 2 == 0 else 0]["obj"].take_damage(dmg)
         except:
             pass
         for x in range(len(magic)):
             try:
                 if magic[x]["name"] == mag:
                     dmg = magic[x]["dmg"]
-                    name[1 if i % 2 == 0 else 1]["obj"].take_damage(magic[x]["dmg"])
+                    name[1 if i % 2 == 0 else 0]["obj"].take_damage(magic[x]["dmg"])
             except:
                 continue
     else:
@@ -78,7 +88,7 @@ while running:
         + " TOOK DAMAGE OF: "
         + str(dmg)
         + " HIS HP IS: "
-        + str(name[1 if i % 2 == 0 else 1]["obj"].get_hp())
+        + str(name[1 if i % 2 == 0 else 0]["obj"].get_hp())
         + bcolors.ENDC
     )
     i += 1
