@@ -17,11 +17,34 @@ print(bcolors.FAIL + bcolors.BOLD + "AN ENEMY ATTACKS!" + bcolors.ENDC)
 name = {0: {"name": "PLAYER 1", "obj": player}, 1: {"name": "PLAYER 2", "obj": enemy}}
 
 print()
+defined = 10
 while running:
     dmg = 0
     cost = 0
-    if i == 20:
-        break
+    layers = name[i % 2]["obj"].get_max_hp() // defined
+    have = name[i % 2]["obj"].get_hp() // defined
+    layers -= have
+    print(
+        name[i % 2]["name"]
+        + " ==> "
+        + bcolors.OKBLUE
+        + "=" * have
+        + bcolors.FAIL
+        + "=" * layers
+        + bcolors.ENDC
+    )
+    layers = name[1 if i % 2 == 0 else 0]["obj"].get_max_hp() // defined
+    have = name[1 if i % 2 == 0 else 0]["obj"].get_hp() // defined
+    layers -= have
+    print(
+        name[1 if i % 2 == 0 else 0]["name"]
+        + " ==> "
+        + bcolors.OKBLUE
+        + "=" * have
+        + bcolors.FAIL
+        + "=" * layers
+        + bcolors.ENDC
+    )
     if name[1 if i % 2 == 0 else 0]["obj"].get_hp() <= 0:
         print(bcolors.OKGREEN + name[i % 2]["name"] + " win!" + bcolors.ENDC)
         break
@@ -59,7 +82,7 @@ while running:
                             + bcolors.BOLD
                             + "BECAUSE "
                             + name[i % 2]["name"]
-                            +" CHOSE A DEAL OF HP TO MP EXCHANGE "
+                            + " CHOSE A DEAL OF HP TO MP EXCHANGE "
                             + bcolors.BOLD
                             + " HE TOOK DAMAGE OF: "
                             + str(dmgp)
@@ -92,8 +115,3 @@ while running:
         + bcolors.ENDC
     )
     i += 1
-
-print(player.generate_damage())
-print(player.generate_spell_damage(1))
-print(enemy.get_hp())
-print(player.get_hp())
