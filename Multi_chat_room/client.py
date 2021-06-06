@@ -1,7 +1,10 @@
 import socket
 import select
 import sys
-
+# Select a good cryptographic function and share keys first
+# Then start communicating
+def encryption(msg):
+    pass
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 if len(sys.argv) != 3:
     print("Correct usage: script, IP address, port number")
