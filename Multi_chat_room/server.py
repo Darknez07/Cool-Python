@@ -3,6 +3,8 @@ import socket
 import select
 import sys
 from threading import _start_new_thread
+import emoji
+# -*- coding: UTF-8 -*-
 
 """The first argument AF_INET is the address domain of the
 socket. This is used when we have an Internet Domain with
@@ -11,6 +13,12 @@ SOCK_STREAM means that data or characters are read in
 a continuous flow."""
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+def encryption(msg):
+    return msg[::2], 2
+
+def decryption(msg, key):
+    return msg[::-key]
 
 # checks whether sufficient arguments have been provided
 if len(sys.argv) != 3:
@@ -42,7 +50,7 @@ list_of_clients = []
 def clientthread(conn, addr):
 
     # sends a message to the client whose user object is conn
-    conn.send(str.encode("Welcome to this chatroom!"))
+    conn.send(str.encode("Aap sabka iss Vartalap alaay mein!!!\U0001f600"))
 
     while True:
         try:
@@ -53,7 +61,7 @@ def clientthread(conn, addr):
 				user who just sent the message on the server
 				terminal"""
             print("<" + addr[0] + "> " + message)
-
+            message = ' '.join(map(str,encryption(message)))
             # Calls broadcast function to send message to all
             message_to_send = "<" + addr[0] + "> " + message
             broadcast(message_to_send, conn)
