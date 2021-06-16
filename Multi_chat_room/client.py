@@ -3,8 +3,6 @@ import select
 import sys
 # Select a good cryptographic function and share keys first
 # Then start communicating
-def encryption(msg):
-    pass
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 if len(sys.argv) != 3:
     print("Correct usage: script, IP address, port number")
@@ -19,6 +17,9 @@ while True:
     for socks in read_sockets:
         if socks == server:
             message = socks.recv(2048)
+            if type(message) == type(b'he'):
+                message = message.decode('utf-8').strip('\n')
+            print(message)
         else:
             message = sys.stdin.readline()
             server.send(str.encode(message))
