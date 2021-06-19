@@ -14,6 +14,7 @@ a continuous flow."""
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
+# Encryption and Decryption functions
 def encryption(msg):
     return msg[::2], 2
 
@@ -33,8 +34,7 @@ Port = int(sys.argv[2])
 
 """
 binds the server to an entered IP address and at the
-specified port number.
-The client must be aware of these parameters
+specified port number.The client must be aware of these parameters
 """
 server.bind((IP_address, Port))
 
@@ -61,7 +61,9 @@ def clientthread(conn, addr):
 				user who just sent the message on the server
 				terminal"""
             print("<" + addr[0] + "> " + message)
+            # Trying the simplest encryption
             message = ' '.join(map(str,encryption(message)))
+            # Known to just servers
             # Calls broadcast function to send message to all
             message_to_send = "<" + addr[0] + "> " + message
             broadcast(message_to_send, conn)
