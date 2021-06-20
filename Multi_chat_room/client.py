@@ -17,6 +17,7 @@ while True:
     for socks in read_sockets:
         if socks == server:
             message = socks.recv(2048)
+            # Basically decoding binary data
             if type(message) == type(b'he'):
                 message = message.decode('utf-8').strip('\n')
             print(message)
