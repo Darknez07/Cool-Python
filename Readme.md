@@ -10,3 +10,13 @@
 ![Sample Run 2](Deal_150.JPG "Sample Run 2")
 * Above Image describes the Highlight
 * And the Health bar
+
+### Multi Chat Room
+* Under development, It aims to extract to broader lengths
+* This may use an NLP template
+Read more [here](Multi_chat_room/Readme.md)
+
+## A visualizer for Tree Based algortihms
+When we try to learn data structures, some of us have a hard time visualizing how the tree operations are carried out. So I am starting an initiative to visualize all the algorithms accordingly and try to make it reachable for everybody.
+`This needs some work which is under continuation`
+`Might expand to OOD paragidm`
