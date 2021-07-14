@@ -17,6 +17,7 @@
 Read more [here](Multi_chat_room/Readme.md)
 
 ## A visualizer for Tree Based algortihms
-When we try to learn data structures, some of us have a hard time visualizing how the tree operations are carried out. So I am starting an initiative to visualize all the algorithms accordingly and try to make it reachable for everybody.
+When we try to learn data structures, some of us have a hard time visualizing how the tree operations are carried out. So I am starting an initiative to visualize all the algorithms accordingly and try to make it reachable for everybody. Mostly graph based algorithms are tricker to understand thus it is hope of making data structures a little fun to study and visualize.
+
 `This needs some work which is under continuation`
 `Might expand to OOD paragidm`
